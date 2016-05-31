@@ -3,7 +3,7 @@
     test -f {{ ruby_file_name }}
   register:
     ruby_test_vars
-  failed_when: ruby_test_vars.rc not in [0, 1]
+  failed_when: "ruby_test_vars.rc != 0 and ruby_test_vars.rc != 1"
   changed_when: false
 
 - name: Rubyがダウンロード済みか確認
@@ -11,7 +11,7 @@
     test -f {{ work_dir }}/{{ ruby_archive_version }}
   register:
     ruby_src_test_vars
-  failed_when: ruby_test_vars.rc not in [0, 1]
+  failed_when: "ruby_test_vars.rc != 0 and ruby_test_vars.rc != 1"
   changed_when: false
 
 - name: Rubyのソースコードのダウンロード

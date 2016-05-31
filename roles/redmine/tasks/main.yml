@@ -25,7 +25,7 @@
     test -f {{ redmine_dir }}/Gemfile.lock
   register:
     result_test_gemfile
-  failed_when: result_test_gemfile.rc not in [0, 1]
+  failed_when: "result_test_gemfile.rc != 0 and result_test_gemfile.rc != 1"
   changed_when: false
 
 - name: gemsパッケージのインストール
